@@ -2,77 +2,142 @@
 #define _SUDOKU_H_
 
 #include <vector>
-#include <iostream>
 
 
 //STRUCTURE DECLARATIONS
-/*---------------------------------*/
+/*------------------------------*/
 #pragma region STRUCTURE DECLARATIONS
 
 
-/*----SUDOKU DYNAMIC BOARD----*/
-struct dynamicboard
-{
-//FRIENDS
-friend class gridrow;
-public:
+/*----Sudoku Dynamic Board----*/
+# pragma region Sudoku Dynamic Board
+	struct dynamicboard
+	{
+		//FRIENDS
+		friend struct gridrow;
+	private:
+	#pragma region PRIVATE
+		//PRIVATE RESOURCES
+		int grid[9][9];
+		gridrow row[9];
 
-	dynamicboard(const int inp[9][9]);
+		//PRIVATE FUNCTIONS
 
-private:
+		//returns copy of grid
+		std::vector<std::vector<int>> get_vector_board();
 
-	int grid[9][9];
+		//calls allocation functions
+		void allocate_data_sets(int grid[9][9]);
+	#pragma endregion
 
+	public:
+	#pragma region PUBLIC
+		//PUBLIC CONSTRUCTOR
+		dynamicboard(const int inp[9][9]);
+		
+		//PUBLIC RESOURCES
 
-	//Private Functions
-
-	//returns copy of grid
-	std::vector<std::vector<int>> vector_board();
-
-public:
-	//Public Functions
+		//PUBLIC FUNCTIONS
 	
-	//print board to screen
-	void print_sudoku();
+		//prints row of sudoku board
+		void print_row(int i);
 
-	//print vector board to screen
-	void print_vector_board(std::vector<std::vector<int>> gridcpy);
+		//print board to screen
+		void print_sudoku();
 
-};
-
-
-
-
-///*----SUDOKU ROW----*/
-//struct gridrow
-//{
-////FRIENDS
-//friend class dynamicboard;
-//private:
-////Contructor (private)
-//	gridrow(int* inp[9])
-//	{
-//		for (int i = 0; i < 9; i++)
-//			row[i] = inp[i];
-//	}
-//
-//	int* row[9];
-//
-//public:
-//	
-//
-//};
-
+		//print vector board to screen
+		void print_vector_sudoku();
+	#pragma endregion
+	};
 #pragma endregion
+
+/*----Sudoku Row----*/
+#pragma region Sudoku Row
+	struct gridrow
+	{
+		//FRIENDS
+		friend struct dynamicboard;
+	private:
+	#pragma region PRIVATE
+		//CONTRUCTOR (private)
+
+		//PRIVATE RESOURCES
+
+		int* row_slot[9];
+
+		//PRIVATE FUNCTIONS
+		void row_memory_handler(int row[9])
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				row_slot[i] = &row[i];
+			}
+		}
+
+		void print_r()
+		{
+			std::cout << *row_slot[0];
+			for (int i = 1; i < 9; i++)
+				std::cout << ", " << *row_slot[i];
+			std::cout << '\n';
+		}
+	#pragma endregion
+
+	public:
+	#pragma region PUBLIC
+		//PUBLIC FUNCTIONS
+
+	#pragma endregion
+	};
+#pragma endregion
+
+
+
+
+
+
+//end of structure declarations
+#pragma endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //FUNCTION DECLARATIONS
-/*---------------------------------*/
-#pragma region FUNCTION DECLARATIONS
-//STRUCTURE FUNCTIONS
+/*------------------------------*/
+#pragma region STRUCTURE DECLARATIONS
 
-//LIBRARY FUNCTIONS
+
+/*----Sudoku Dynamic Board----*/
+# pragma region Sudoku Dynamic Board
 
 #pragma endregion
+
+/*----Sudoku Row----*/
+#pragma region Sudoku Row
+
+#pragma endregion
+
+#pragma endregion
+
+#pragma endregion
+
 
 
 #endif
