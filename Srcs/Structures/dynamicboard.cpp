@@ -61,18 +61,18 @@
 	//print board to screen
 	void dynamicboard::print_sudoku()
 	{
-		for (int y = 0; y < 9; y += 3)//iterate collums
+		for (int x = 0; x < 9; x += 3)//iterate rows
 		{
-			for (int yy = 0; yy < 3; yy++)//iterate collums's sets of 3
+			for (int xx = 0; xx < 3; xx++)//iterate rows in sets of 3
 			{
-				for (int x = 0; x < 9; x += 3)//iterate rows
+				for (int y = 0; y < 9; y += 3)//iterate slots
 				{
-					std::cout << grid[x][y];//happens before sets of 3 (prints first character)
-					for (int xx = 1; xx < 3; xx++)//iterate rows in sets of 3
+					std::cout << grid[xx + x][y];//happens before sets of 3 (prints first character)
+					for (int yy = 1; yy < 3; yy++)//iterate rows:slots in sets of 3
 					{
-						std::cout << ", " << grid[x + xx][y];//prints sencond two with commas and spacing
+						std::cout << ", " << grid[xx + x][yy + y];//prints sencond two with commas and spacing
 					}
-					std::cout << "		";//happens after every 3 e.g. 1, 2, 3, *thing*
+					std::cout << "    ";//happens after every 3 e.g. 1, 2, 3, *thing*
 				}
 				std::cout << '\n';//happens after every row
 			}
