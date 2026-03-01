@@ -6,7 +6,6 @@
 
 //STRUCTURE DECLARATIONS
 /*------------------------------*/
-#pragma region STRUCTURE DECLARATIONS
 
 
 /*----Sudoku Dynamic Board----*/
@@ -89,53 +88,6 @@
 
 	#pragma endregion
 	};
-#pragma endregion
-
-
-
-
-
-
-//end of structure declarations
-#pragma endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//FUNCTION DECLARATIONS
-/*------------------------------*/
-#pragma region STRUCTURE DECLARATIONS
-
-
-/*----Sudoku Dynamic Board----*/
-# pragma region Sudoku Dynamic Board
-
-#pragma endregion
-
-/*----Sudoku Row----*/
-#pragma region Sudoku Row
-
-#pragma endregion
-
-#pragma endregion
-
 #pragma endregion
 
 
