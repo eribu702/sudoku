@@ -4,8 +4,11 @@
 
 //STRUCTURES
 /*---------------------------------*/
+#pragma region Structres
+
 
 /*----SUDOKU DYNAMIC BOARD----*/
+
 dynamicboard::dynamicboard(const int inp[9][9]) {
 	for (int b = 0; b < 9; b++)
 	{
@@ -74,35 +77,7 @@ void dynamicboard::print_vector_board(std::vector<std::vector<int>> gridcpy)
 	}
 }
 
-///*----SUDOKU ROW----*/
-//struct gridrow
-//{
-////FRIENDS
-//friend class dynamicboard;
-//private:
-////Contructor (private)
-//	gridrow(int* inp[9])
-//	{
-//		for (int i = 0; i < 9; i++)
-//			row[i] = inp[i];
-//	}
-//
-//	int* row[9];
-//
-//public:
-//	
-//
-//};
-
-
-
-
-
-
-
-
-
-
+#pragma endregion
 
 //FUNCTIONS
 /*---------------------------------*/

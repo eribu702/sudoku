@@ -4,31 +4,11 @@
 #include <vector>
 #include <iostream>
 
-//FUNCTION DECLARATIONS
+
+//STRUCTURE DECLARATIONS
 /*---------------------------------*/
+#pragma region STRUCTURE DECLARATIONS
 
-//STRUCTURE FUNCTIONS
-
-//LIBRARY FUNCTIONS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//STRUCTURES
-/*---------------------------------*/
 
 /*----SUDOKU DYNAMIC BOARD----*/
 struct dynamicboard
@@ -83,20 +63,16 @@ public:
 //
 //};
 
+#pragma endregion
 
-
-
-
-
-
-
-
-
-
-//FUNCTIONS
+//FUNCTION DECLARATIONS
 /*---------------------------------*/
+#pragma region FUNCTION DECLARATIONS
+//STRUCTURE FUNCTIONS
 
+//LIBRARY FUNCTIONS
 
+#pragma endregion
 
 
 #endif
