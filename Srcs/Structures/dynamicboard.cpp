@@ -28,7 +28,11 @@
 	void dynamicboard::allocate_data_sets(int grid[9][9])
 	{
 		for (int i = 0; i < 9; i++)
-			row[i].row_memory_handler(grid[i]);
+		{
+			row[i].memory_handler(grid, i);
+
+			column[i].memory_handler(grid, i);
+		}
 	}
 
 #pragma endregion
@@ -39,23 +43,34 @@
 	//PUBLIC CONSTRUCTOR
 	dynamicboard::dynamicboard(const int inp[9][9])
 	{
-		for (int b = 0; b < 9; b++)
-		{
-			for (int a = 0; a < 9; a++)
-			{
-				grid[a][b] = inp[a][b];
-			}
-		}
+		for (int x = 0; x < 9; x++)
+			for (int y = 0; y < 9; y++)
+				grid[y][x] = inp[y][x];
+
 		allocate_data_sets(grid);
 	}
 
 
 	//PUBLIC FUNCTIONS
 
+	//fill functions
+
+	void dynamicboard::fill_row(int i, int inp)
+	{
+		row[i].fill_r(inp);
+	}
+
+	//print functions
 	//prints row of sudoku board
 	void dynamicboard::print_row(int i)
 	{
 		row[i].print_r();
+	}
+
+	//prints colomn of sudoku board
+	void dynamicboard::print_column(int i)
+	{
+		column[i].print_c();
 	}
 
 	//print board to screen
@@ -102,5 +117,6 @@
 			std::cout << '\n';//happens after every 3 rows
 		}
 	}
+
 
 #pragma endregion

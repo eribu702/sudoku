@@ -2,35 +2,28 @@
 #include <iostream>
 
 
-/*----Structure gridrow----*/
+/*----Structure gridcolumn----*/
 
 //PRIVATE
 #pragma region PRIVATE
 
 	//PRIVATE FUNCTIONS
 
-void gridrow::memory_handler(int grid[9][9], int i)
+void gridcolumn::memory_handler(int grid[9][9], int i)
 {
 	for (int a = 0; a < 9; a++)
 	{
-		row_slot[a] = &grid[i][a];
+		column_slot[a] = &grid[a][i];
 	}
 }
 
-void gridrow::print_r()
+void gridcolumn::print_c()
 {
-	std::cout << *row_slot[0];
+	std::cout << *column_slot[0];
 	for (int i = 1; i < 9; i++)
-		std::cout << ", " << *row_slot[i];
+		std::cout << ", " << *column_slot[i];
 	std::cout << '\n';
 }
-
-void gridrow::fill_r(int inp)
-{
-	for (int i = 0; i < 9; i++)
-		*row_slot[i] = inp;
-}
-
 #pragma endregion
 
 //PUBLIC
