@@ -32,6 +32,10 @@
 			row[i].memory_handler(grid, i);
 
 			column[i].memory_handler(grid, i);
+
+			sqaure[i].memory_handler(grid, i);
+
+
 		}
 	}
 
@@ -54,13 +58,29 @@
 	//PUBLIC FUNCTIONS
 
 	//fill functions
-
+	
+	//fills row[i] with inp
 	void dynamicboard::fill_row(int i, int inp)
 	{
 		row[i].fill_r(inp);
 	}
 
+	//fills column[i] with inp
+	void dynamicboard::fill_column(int i, int inp)
+	{
+		column[i].fill_c(inp);
+	}
+
+	//fills sqaure[i] with inp
+	void dynamicboard::fill_sqaure(int i, int inp)
+	{
+		sqaure[i].fill_s(inp);
+	}
+
+
+
 	//print functions
+	
 	//prints row of sudoku board
 	void dynamicboard::print_row(int i)
 	{
@@ -72,6 +92,14 @@
 	{
 		column[i].print_c();
 	}
+
+	//prints sqaure of sudoku board
+	void dynamicboard::print_sqaure(int i)
+	{
+		sqaure[i].print_s();
+	}
+
+
 
 	//print board to screen
 	void dynamicboard::print_sudoku()

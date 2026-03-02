@@ -9,6 +9,42 @@
 
 
 
+/*----Structure gridsqaure----*/
+#pragma region Structure gridsqaure
+struct gridsqaure
+{
+	//FRIENDS
+	friend struct dynamicboard;
+private:
+#pragma region PRIVATE
+	//CONTRUCTOR (private)
+
+	//PRIVATE RESOURCES
+
+	int* sqaure_slot[9];
+
+	//PRIVATE FUNCTIONS
+
+	//recieves and packages slot information
+	void memory_handler(int grid[9][9], int inp);
+
+	//prints gridsqaure's contents
+	void print_s();
+
+	//fill a sqaure with an input
+	void fill_s(int inp);
+
+#pragma endregion
+
+public:
+#pragma region PUBLIC
+	//PUBLIC FUNCTIONS
+
+#pragma endregion
+};
+#pragma endregion
+
+
 /*----Structure gridcolumn----*/
 #pragma region Structure gridcolumn
 struct gridcolumn
@@ -25,6 +61,13 @@ private:
 
 	//PRIVATE FUNCTIONS
 
+	//fill functions
+	
+	//fills column with inp
+	void fill_c( int inp);
+
+	//print functions
+
 	//recieves and packages slot information
 	void memory_handler(int column[9][9], int i);
 
@@ -40,7 +83,6 @@ public:
 #pragma endregion
 };
 #pragma endregion
-
 
 
 /*----Structure gridrow----*/
@@ -84,15 +126,13 @@ public:
 #pragma region Structure dynamicboard
 struct dynamicboard
 {
-	//FRIENDS
-	friend struct gridrow;
-	friend struct gridcolumn;
 private:
 #pragma region PRIVATE
 	//PRIVATE RESOURCES
 	int grid[9][9];
 	gridrow row[9];
 	gridcolumn column[9];
+	gridsqaure sqaure[9];
 
 	//PRIVATE FUNCTIONS
 
@@ -113,9 +153,15 @@ public:
 	//PUBLIC FUNCTIONS
 	
 	//fill functions
+	
+	//fills row[i] with inp
 	void fill_row(int i, int inp);
 
+	//fills column[i] with inp
+	void fill_column(int i, int inp);
 
+	//fills sqaure[i] with inp
+	void fill_sqaure(int i, int inp);
 
 
 	//print functions
@@ -125,6 +171,9 @@ public:
 
 	//prints row of sudoku board
 	void print_row(int i);
+
+	//prints sqaure of sudoku board
+	void print_sqaure(int i);
 
 	//print board to screen
 	void print_sudoku();
