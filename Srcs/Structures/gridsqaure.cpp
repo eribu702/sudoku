@@ -25,29 +25,6 @@ void gridsqaure::memory_handler(int grid[9][9], int inp)
 	}
 }
 
-
-//fill functions
-
-//fills sqaure with inp
-void gridsqaure::fill_s(int inp)
-{
-	for (int i = 0; i < 9; i++)
-		*sqaure_slot[i] = inp;
-}
-
-
-
-//print functions
-
-//prints sqaure
-void gridsqaure::print_s()
-{
-	std::cout << *sqaure_slot[0];
-	for (int i = 1; i < 9; i++)
-		std::cout << ", " << *sqaure_slot[i];
-	std::cout << '\n';
-}
-
 #pragma endregion
 
 //PUBLIC

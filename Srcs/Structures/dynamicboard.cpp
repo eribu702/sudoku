@@ -39,6 +39,38 @@
 		}
 	}
 
+	//checks a row column or sqaure
+	int dynamicboard::check(char structure, int index, int target)
+	{
+		int check = 0;
+		switch (structure)
+		{
+		case 'r':
+			for (int i = 0; i < 9; i++)
+			{
+				if (*row[index].row_slot[i] == target)
+					check += 1;
+			}
+			break;
+		case 'c':
+			for (int i = 0; i < 9; i++)
+			{
+				if (*column[index].column_slot[i] == target)
+					check += 1;
+			}
+			break;
+		case 's':
+			for (int i = 0; i < 9; i++)
+			{
+				if (*sqaure[index].sqaure_slot[i] == target)
+					check += 1;
+			}
+			break;
+		}
+		return check;
+	}
+
+
 #pragma endregion
 
 //PUBLIC
@@ -60,49 +92,58 @@
 	//fill functions
 	
 	//fills row[i] with inp
-	void dynamicboard::fill_row(int i, int inp)
+	void dynamicboard::fill(char structure, int i, int inp)
 	{
-		row[i].fill_r(inp);
+		switch (structure)
+		{
+			case 'r':
+				for (int slot = 0; slot < 9; slot++)
+					*row[i].row_slot[slot] = inp;
+				break;
+			case 'c':
+				for (int slot = 0; slot < 9; slot++)
+					*column[i].column_slot[slot] = inp;
+				break;
+			case 's':
+				for (int slot = 0; slot < 9; slot++)
+					*sqaure[i].sqaure_slot[slot] = inp;
+				break;
+		}
 	}
 
-	//fills column[i] with inp
-	void dynamicboard::fill_column(int i, int inp)
-	{
-		column[i].fill_c(inp);
-	}
-
-	//fills sqaure[i] with inp
-	void dynamicboard::fill_sqaure(int i, int inp)
-	{
-		sqaure[i].fill_s(inp);
-	}
-
-
+	
 
 	//print functions
 	
-	//prints row of sudoku board
-	void dynamicboard::print_row(int i)
+	void dynamicboard::print_set(char structure, int i)
 	{
-		row[i].print_r();
+		switch (structure)
+		{
+		case 'r':
+			std::cout << *row[i].row_slot[0];
+			for (int slot = 1; slot < 9; slot++)
+				std::cout << ", " << *row[i].row_slot[slot];
+			std::cout << '\n';
+			break;
+
+		case 'c':
+			std::cout << *column[i].column_slot[0];
+			for (int slot = 1; slot < 9; slot++)
+				std::cout << ", " << *column[i].column_slot[slot];
+			std::cout << '\n';
+			break;
+
+		case 's':
+			std::cout << *sqaure[i].sqaure_slot[0];
+			for (int slot = 1; slot < 9; slot++)
+				std::cout << ", " << *sqaure[i].sqaure_slot[slot];
+			std::cout << '\n';
+			break;
+		}
 	}
-
-	//prints colomn of sudoku board
-	void dynamicboard::print_column(int i)
-	{
-		column[i].print_c();
-	}
-
-	//prints sqaure of sudoku board
-	void dynamicboard::print_sqaure(int i)
-	{
-		sqaure[i].print_s();
-	}
-
-
 
 	//print board to screen
-	void dynamicboard::print_sudoku()
+	void dynamicboard::print()
 	{
 		for (int x = 0; x < 9; x += 3)//iterate rows
 		{
@@ -144,6 +185,31 @@
 			}
 			std::cout << '\n';//happens after every 3 rows
 		}
+	}
+
+
+	//check functions
+	
+	//checks every row, column and sqaure for repeats of the same number
+	bool dynamicboard::check_correctness()
+	{
+		const char str[] = "rcs";
+
+		for (int i = 0; i < 3; i++)//iterates rows, columns and sqaures
+		{
+			for (int structure_i = 0; structure_i < 9; structure_i++)//iterates through 9 of each structure
+			{
+				for (int check_target = 1; check_target <= 9; check_target++)//iterates through each number check
+				{
+					if (check(str[i], structure_i, check_target) > 1)
+					{
+						std::cout << str[i] << ' ' << structure_i << ' ' << check_target << '\n';
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 

@@ -28,12 +28,6 @@ private:
 	//recieves and packages slot information
 	void memory_handler(int grid[9][9], int inp);
 
-	//prints gridsqaure's contents
-	void print_s();
-
-	//fill a sqaure with an input
-	void fill_s(int inp);
-
 #pragma endregion
 
 public:
@@ -61,18 +55,8 @@ private:
 
 	//PRIVATE FUNCTIONS
 
-	//fill functions
-	
-	//fills column with inp
-	void fill_c( int inp);
-
-	//print functions
-
 	//recieves and packages slot information
 	void memory_handler(int column[9][9], int i);
-
-	//prints gridcolumn's contents
-	void print_c();
 
 #pragma endregion
 
@@ -104,12 +88,6 @@ private:
 	//recieves and packages slot information
 	void memory_handler(int grid[9][9], int i);
 
-	//prints gridrow's contents
-	void print_r();
-
-	//fill a row with an input
-	void fill_r(int inp);
-
 #pragma endregion
 
 public:
@@ -134,6 +112,7 @@ private:
 	gridcolumn column[9];
 	gridsqaure sqaure[9];
 
+
 	//PRIVATE FUNCTIONS
 
 	//returns copy of grid
@@ -141,6 +120,10 @@ private:
 
 	//calls allocation functions
 	void allocate_data_sets(int grid[9][9]);
+
+	//checks a row, column or sqaure
+	int check(char structure, int index, int target);
+
 #pragma endregion
 
 public:
@@ -152,34 +135,26 @@ public:
 
 	//PUBLIC FUNCTIONS
 	
-	//fill functions
-	
-	//fills row[i] with inp
-	void fill_row(int i, int inp);
 
-	//fills column[i] with inp
-	void fill_column(int i, int inp);
+	//fills structure[i] with inp
+	void fill(char structure, int i, int inp);
 
-	//fills sqaure[i] with inp
-	void fill_sqaure(int i, int inp);
-
-
-	//print functions
-	
-	//prints column of sudoku board
-	void print_column(int i);
-
-	//prints row of sudoku board
-	void print_row(int i);
-
-	//prints sqaure of sudoku board
-	void print_sqaure(int i);
+	//prints a row, column or sqaure's contents
+	void print_set(char structure, int i);
 
 	//print board to screen
-	void print_sudoku();
+	void print();
 
 	//print vector board to screen
 	void print_vector_sudoku();
+
+
+	//check functions
+
+	//checks every row, column and sqaure for repeats of the same number
+	bool check_correctness();
+
+
 #pragma endregion
 };
 #pragma endregion
