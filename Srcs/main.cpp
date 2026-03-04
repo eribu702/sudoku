@@ -5,7 +5,7 @@
 int main(void)
 {
 	const int grid_input[9][9] = 
-	{//									[y]
+	{
 		9, 0, 0,	1, 0, 0,	0, 0, 0,//0
 		0, 0, 7,	2, 0, 0,	0, 0, 0,//1
 		0, 0, 0,	3, 0, 0,	0, 0, 0,//2
@@ -19,25 +19,26 @@ int main(void)
 		1, 2, 5,	7, 0, 0,	0, 0, 0,//6
 		0, 1, 7,	8, 0, 0,	0, 2, 0,//7
 		7, 4, 0,	9, 0, 0,	0, 0, 0,//8
-	};//0  1  2     3  4  5     6  7  8    [x]
+	};//0  1  2     3  4  5     6  7  8
 
-
-	dynamicboard grid(grid_input);
-
-	grid.print_sudoku();
-	std::cout << "\n\n\n";
-
-	grid.print_sqaure(4);
-	grid.print_row(3);
-	std::cout << "\n\n\n";
+	dynamicboard sudoku(grid_input);
 	
-	grid.fill_sqaure(4, 9);
+	sudoku.print_sudoku();
+	sudoku.print_column(1);
+	sudoku.print_column(3);
+	sudoku.print_row(3);
 
-	grid.print_sqaure(4);
-	grid.print_row(3);
-	std::cout << "\n\n\n";
+	std::cout << "\n\n";
 
-	grid.print_sudoku();
+	sudoku.fill_column(3, 9);
+	sudoku.fill_row(3, 9);
+	sudoku.fill_sqaure(4, 5);
 
+	std::cout << "\n\n";
+	
+	sudoku.print_column(3);
+	sudoku.print_row(3);
+	sudoku.print_sqaure(4);
 
+	sudoku.print_sudoku();
 }
