@@ -10,20 +10,6 @@
 
 	//PRIVATE FUNCTIONS
 
-	//returns copy of grid
-	std::vector<std::vector<int>> dynamicboard::get_vector_board()
-	{
-		std::vector<std::vector<int>> grid_cpy(9, std::vector<int>(9));//create a 9x9 vector
-		for (int y = 0; y < 9; y++)
-		{
-			for (int x = 0; x < 9; x++)
-			{
-				grid_cpy[x][y] = grid[x][y];
-			}
-		}
-		return grid_cpy;
-	}
-
 	//calls allocation functions
 	void dynamicboard::allocate_data_sets(int grid[9][9])
 	{
@@ -34,8 +20,6 @@
 			column[i].memory_handler(grid, i);
 
 			sqaure[i].memory_handler(grid, i);
-
-
 		}
 	}
 
@@ -48,21 +32,21 @@
 		case 'r':
 			for (int i = 0; i < 9; i++)
 			{
-				if (*row[index].row_slot[i] == target)
+				if (*row[index].slot[i] == target)
 					check += 1;
 			}
 			break;
 		case 'c':
 			for (int i = 0; i < 9; i++)
 			{
-				if (*column[index].column_slot[i] == target)
+				if (*column[index].slot[i] == target)
 					check += 1;
 			}
 			break;
 		case 's':
 			for (int i = 0; i < 9; i++)
 			{
-				if (*sqaure[index].sqaure_slot[i] == target)
+				if (*sqaure[index].slot[i] == target)
 					check += 1;
 			}
 			break;
@@ -98,20 +82,18 @@
 		{
 			case 'r':
 				for (int slot = 0; slot < 9; slot++)
-					*row[i].row_slot[slot] = inp;
+					*row[i].slot[slot] = inp;
 				break;
 			case 'c':
 				for (int slot = 0; slot < 9; slot++)
-					*column[i].column_slot[slot] = inp;
+					*column[i].slot[slot] = inp;
 				break;
 			case 's':
 				for (int slot = 0; slot < 9; slot++)
-					*sqaure[i].sqaure_slot[slot] = inp;
+					*sqaure[i].slot[slot] = inp;
 				break;
 		}
 	}
-
-	
 
 	//print functions
 	
@@ -120,23 +102,23 @@
 		switch (structure)
 		{
 		case 'r':
-			std::cout << *row[i].row_slot[0];
+			std::cout << *row[i].slot[0];
 			for (int slot = 1; slot < 9; slot++)
-				std::cout << ", " << *row[i].row_slot[slot];
+				std::cout << ", " << *row[i].slot[slot];
 			std::cout << '\n';
 			break;
 
 		case 'c':
-			std::cout << *column[i].column_slot[0];
+			std::cout << *column[i].slot[0];
 			for (int slot = 1; slot < 9; slot++)
-				std::cout << ", " << *column[i].column_slot[slot];
+				std::cout << ", " << *column[i].slot[slot];
 			std::cout << '\n';
 			break;
 
 		case 's':
-			std::cout << *sqaure[i].sqaure_slot[0];
+			std::cout << *sqaure[i].slot[0];
 			for (int slot = 1; slot < 9; slot++)
-				std::cout << ", " << *sqaure[i].sqaure_slot[slot];
+				std::cout << ", " << *sqaure[i].slot[slot];
 			std::cout << '\n';
 			break;
 		}
@@ -157,29 +139,6 @@
 						std::cout << ", " << grid[xx + x][yy + y];//prints sencond two with commas and spacing
 					}
 					std::cout << "    ";//happens after every 3 e.g. 1, 2, 3, *thing*
-				}
-				std::cout << '\n';//happens after every row
-			}
-			std::cout << '\n';//happens after every 3 rows
-		}
-	}
-
-	//print vector board to screen
-	void dynamicboard::print_vector_sudoku()
-	{
-		std::vector<std::vector<int>> gridcpy = get_vector_board();
-		for (int y = 0; y < 9; y += 3)//iterate collums
-		{
-			for (int yy = 0; yy < 3; yy++)//iterate collums's sets of 3
-			{
-				for (int x = 0; x < 9; x += 3)//iterate rows
-				{
-					std::cout << gridcpy[x][y];//happens before sets of 3 (prints first character)
-					for (int xx = 1; xx < 3; xx++)//iterate rows in sets of 3
-					{
-						std::cout << ", " << gridcpy[x + xx][y];//prints sencond two with commas and spacing
-					}
-					std::cout << "		";//happens after every 3 e.g. 1, 2, 3, *thing*
 				}
 				std::cout << '\n';//happens after every row
 			}

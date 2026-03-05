@@ -13,7 +13,7 @@ void gridcolumn::memory_handler(int grid[9][9], int i)
 {
 	for (int a = 0; a < 9; a++)
 	{
-		column_slot[a] = &grid[a][i];
+		slot[a] = &grid[a][i];
 	}
 }
 

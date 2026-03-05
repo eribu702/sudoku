@@ -21,7 +21,7 @@ private:
 
 	//PRIVATE RESOURCES
 
-	int* sqaure_slot[9];
+	int* slot[9];
 
 	//PRIVATE FUNCTIONS
 
@@ -51,7 +51,7 @@ private:
 
 	//PRIVATE RESOURCES
 
-	int* column_slot[9];
+	int* slot[9];
 
 	//PRIVATE FUNCTIONS
 
@@ -81,7 +81,7 @@ private:
 	
 	//PRIVATE RESOURCES
 
-	int* row_slot[9];
+	int* slot[9];
 
 	//PRIVATE FUNCTIONS
 		
@@ -115,9 +115,6 @@ private:
 
 	//PRIVATE FUNCTIONS
 
-	//returns copy of grid
-	std::vector<std::vector<int>> get_vector_board();
-
 	//calls allocation functions
 	void allocate_data_sets(int grid[9][9]);
 
@@ -145,8 +142,7 @@ public:
 	//print board to screen
 	void print();
 
-	//print vector board to screen
-	void print_vector_sudoku();
+
 
 
 	//check functions

@@ -20,7 +20,7 @@ void gridsqaure::memory_handler(int grid[9][9], int inp)
 	{
 		for (int colC = 0; colC < 3; colC++)
 		{
-			sqaure_slot[i++] = &grid[rowR + row][colC + col];
+			slot[i++] = &grid[rowR + row][colC + col];
 		}
 	}
 }
