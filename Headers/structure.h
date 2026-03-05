@@ -22,6 +22,7 @@ private:
 	//PRIVATE RESOURCES
 
 	int* slot[9];
+	int zeroes = 0;
 
 	//PRIVATE FUNCTIONS
 
@@ -52,6 +53,7 @@ private:
 	//PRIVATE RESOURCES
 
 	int* slot[9];
+	int zeroes = 0;
 
 	//PRIVATE FUNCTIONS
 
@@ -82,6 +84,7 @@ private:
 	//PRIVATE RESOURCES
 
 	int* slot[9];
+	int zeroes = 0;
 
 	//PRIVATE FUNCTIONS
 		
@@ -121,6 +124,9 @@ private:
 	//checks a row, column or sqaure
 	int check(char structure, int index, int target);
 
+	//checks all rows for numbers out of 0-9 range, will return true if none found
+	bool range_check(int index);
+
 #pragma endregion
 
 public:
@@ -150,6 +156,8 @@ public:
 	//checks every row, column and sqaure for repeats of the same number
 	bool check_correctness();
 
+	//counts whitespace
+	void count_zeroes();
 
 #pragma endregion
 };

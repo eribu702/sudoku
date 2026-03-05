@@ -23,7 +23,7 @@
 		}
 	}
 
-	//checks a row column or sqaure
+	//checks a row column or sqaure for target
 	int dynamicboard::check(char structure, int index, int target)
 	{
 		int check = 0;
@@ -54,6 +54,17 @@
 		return check;
 	}
 
+	//checks all rows for numbers out of 0-9 range, will return true if none found
+	bool dynamicboard::range_check(int index)
+	{
+		for (int slot_i = 0; slot_i < 9; slot_i++)
+		{
+			if (*row[index].slot[slot_i] < 0 || *row[index].slot[slot_i] > 9)
+				return false;
+		}
+		return true;
+	}
+	
 
 #pragma endregion
 
@@ -159,7 +170,7 @@
 			for (int structure_i = 0; structure_i < 9; structure_i++)//iterates through 9 of each structure
 			{
 				for (int check_target = 1; check_target <= 9; check_target++)//iterates through each number check
-				{
+				{	
 					if (check(str[i], structure_i, check_target) > 1)
 					{
 						std::cout << str[i] << ' ' << structure_i << ' ' << check_target << '\n';
@@ -168,8 +179,28 @@
 				}
 			}
 		}
+		for (int structure_i = 0; structure_i < 9; structure_i++)
+		{
+			if (!range_check(structure_i))
+			{
+				std::cout << "Row " << structure_i+1 << " contains a number out of range! (0-9)\n";
+				return false;
+			}
+		}
 		return true;
 	}
 
+	//counts whitespace
+	void dynamicboard::count_zeroes()
+	{
+		for (int structure_i = 0; structure_i < 9; structure_i++)
+		{
+			row[structure_i].zeroes = check('r', structure_i, 0);
+
+			column[structure_i].zeroes = check('c', structure_i, 0);
+
+			sqaure[structure_i].zeroes = check('s', structure_i, 0);
+		}
+	}
 
 #pragma endregion
