@@ -9,6 +9,10 @@
 *.slnx
 *.sln
 #Testing_and_Shelf/
+Testing_and_Shelf/main.cpp
+Testing_and_Shelf/Test.cpp
+Testing_and_Shelf/test.h
+
 
 # User-specific files
 *.rsuser
