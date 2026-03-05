@@ -23,6 +23,7 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
+	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
 
@@ -54,6 +55,7 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
+	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
 
@@ -85,6 +87,7 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
+	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
 		
@@ -127,6 +130,9 @@ private:
 	//checks all rows for numbers out of 0-9 range, will return true if none found
 	bool range_check(int index);
 
+	//sets a substructure's num_present[found_num] to true if the number exists
+	void number_present(char structure, int structure_i, int found_num);
+
 #pragma endregion
 
 public:
@@ -134,13 +140,9 @@ public:
 	//PUBLIC CONSTRUCTOR
 	dynamicboard(const int inp[9][9]);
 
-	//PUBLIC RESOURCES
+
 
 	//PUBLIC FUNCTIONS
-	
-
-	//fills structure[i] with inp
-	void fill(char structure, int i, int inp);
 
 	//prints a row, column or sqaure's contents
 	void print_set(char structure, int i);
@@ -151,13 +153,16 @@ public:
 
 
 
-	//check functions
+	//CHECK FUNCTIONS
+
+	//counts empties
+	void count_zeroes();
+
+	//ensures there is no repeats of numbers in rows, columns or sqaures and records number presence in structures
+	bool check_correct();
 
 	//checks every row, column and sqaure for repeats of the same number
-	bool check_correctness();
-
-	//counts whitespace
-	void count_zeroes();
+	bool initial_check();
 
 #pragma endregion
 };
