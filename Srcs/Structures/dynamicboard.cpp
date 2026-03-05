@@ -16,7 +16,7 @@ void dynamicboard::allocate_data_sets(int grid[9][9])
 
 		column[i].memory_handler(grid, i);
 
-		sqaure[i].memory_handler(grid, i);
+		square[i].memory_handler(grid, i);
 	}
 }
 
@@ -32,7 +32,7 @@ void dynamicboard::number_present(char structure, int structure_i, int found_num
 			column[structure_i].num_present[found_num - 1] = true;
 			break;
 		case 's':
-			sqaure[structure_i].num_present[found_num - 1] = true;
+			square[structure_i].num_present[found_num - 1] = true;
 			break;
 	}
 	return;
@@ -63,7 +63,7 @@ dynamicboard::dynamicboard(const int inp[9][9])
 
 //PRINT FUNCTIONS
 
-//prints a row, column or sqaure's contents
+//prints a row, column or square's contents
 void dynamicboard::print_set(char structure, int i)
 {
 	switch (structure)
@@ -83,9 +83,9 @@ void dynamicboard::print_set(char structure, int i)
 		break;
 
 	case 's':
-		std::cout << *sqaure[i].slot[0];
+		std::cout << *square[i].slot[0];
 		for (int slot = 1; slot < 9; slot++)
-			std::cout << ", " << *sqaure[i].slot[slot];
+			std::cout << ", " << *square[i].slot[slot];
 		std::cout << '\n';
 		break;
 	}

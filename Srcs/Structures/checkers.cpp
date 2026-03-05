@@ -10,7 +10,7 @@
 
 //PRIVATE
 
-//checks a row column or sqaure for target
+//checks a row column or square for target
 int dynamicboard::check(char structure, int index, int target)
 {
 	int check = 0;
@@ -33,7 +33,7 @@ int dynamicboard::check(char structure, int index, int target)
 	case 's':
 		for (int i = 0; i < 9; i++)
 		{
-			if (*sqaure[index].slot[i] == target)
+			if (*square[index].slot[i] == target)
 				check += 1;
 		}
 		break;
@@ -65,17 +65,17 @@ void dynamicboard::count_zeroes()
 
 		column[structure_i].zeroes = check('c', structure_i, 0);
 
-		sqaure[structure_i].zeroes = check('s', structure_i, 0);
+		square[structure_i].zeroes = check('s', structure_i, 0);
 	}
 }
 
-//ensures there is no repeats of numbers in rows, columns or sqaures and records number presence in structures
+//ensures there is no repeats of numbers in rows, columns or squares and records number presence in structures
 bool dynamicboard::check_correct()
 {
 	const char str[] = "rcs";
 	int target_found;
 
-	for (int i = 0; i < 3; i++)//iterates rows, columns and sqaures
+	for (int i = 0; i < 3; i++)//iterates rows, columns and squares
 	{
 		for (int structure_i = 0; structure_i < 9; structure_i++)//iterates through 9 of each structure
 		{
@@ -110,7 +110,7 @@ bool dynamicboard::initial_check()
 			return false;
 		}
 	}
-	//checks that there is only one of each number per row, column or sqaure and records each numbers presence in structures
+	//checks that there is only one of each number per row, column or square and records each numbers presence in structures
 	if (!check_correct())
 		return false;
 	return true;

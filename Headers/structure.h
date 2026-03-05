@@ -9,9 +9,9 @@
 
 
 
-/*----Structure gridsqaure----*/
-#pragma region Structure gridsqaure
-struct gridsqaure
+/*----Structure gridsquare----*/
+#pragma region Structure gridsquare
+struct gridsquare
 {
 	//FRIENDS
 	friend struct dynamicboard;
@@ -116,7 +116,7 @@ private:
 	int grid[9][9];
 	gridrow row[9];
 	gridcolumn column[9];
-	gridsqaure sqaure[9];
+	gridsquare square[9];
 
 
 	//PRIVATE FUNCTIONS
@@ -124,7 +124,7 @@ private:
 	//calls allocation functions
 	void allocate_data_sets(int grid[9][9]);
 
-	//checks a row, column or sqaure
+	//checks a row, column or square
 	int check(char structure, int index, int target);
 
 	//checks all rows for numbers out of 0-9 range, will return true if none found
@@ -144,7 +144,7 @@ public:
 
 	//PUBLIC FUNCTIONS
 
-	//prints a row, column or sqaure's contents
+	//prints a row, column or square's contents
 	void print_set(char structure, int i);
 
 	//print board to screen
@@ -158,10 +158,10 @@ public:
 	//counts empties
 	void count_zeroes();
 
-	//ensures there is no repeats of numbers in rows, columns or sqaures and records number presence in structures
+	//ensures there is no repeats of numbers in rows, columns or squares and records number presence in structures
 	bool check_correct();
 
-	//checks every row, column and sqaure for repeats of the same number
+	//checks every row, column and square for repeats of the same number
 	bool initial_check();
 
 #pragma endregion

@@ -3,7 +3,7 @@
 
 
 
-/*----Structure gridsqaure----*/
+/*----Structure gridsquare----*/
 
 //PRIVATE
 #pragma region PRIVATE
@@ -11,7 +11,7 @@
 //PRIVATE FUNCTIONS
 
 //assigns pointers to gridspaces
-void gridsqaure::memory_handler(int grid[9][9], int inp)
+void gridsquare::memory_handler(int grid[9][9], int inp)
 {
 	int row = (inp / 3) * 3;
 	int col = (inp % 3) * 3;
