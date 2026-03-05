@@ -4,10 +4,7 @@
 
 /*----Structure gridrow----*/
 
-//PRIVATE
-#pragma region PRIVATE
-
-	//PRIVATE FUNCTIONS
+//PRIVATE FUNCTIONS
 
 void gridrow::memory_handler(int grid[9][9], int i)
 {
@@ -17,11 +14,6 @@ void gridrow::memory_handler(int grid[9][9], int i)
 	}
 }
 
-#pragma endregion
-
-//PUBLIC
-#pragma region PUBLIC
-	//PUBLIC FUNCTIONS
 
 
-#pragma endregion
+//PUBLIC FUNCTIONS

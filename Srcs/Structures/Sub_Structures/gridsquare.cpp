@@ -5,9 +5,6 @@
 
 /*----Structure gridsquare----*/
 
-//PRIVATE
-#pragma region PRIVATE
-
 //PRIVATE FUNCTIONS
 
 //assigns pointers to gridspaces
@@ -25,11 +22,5 @@ void gridsquare::memory_handler(int grid[9][9], int inp)
 	}
 }
 
-#pragma endregion
 
-//PUBLIC
-#pragma region PUBLIC
-	//PUBLIC FUNCTIONS
-
-
-#pragma endregion
+//PUBLIC FUNCTIONS

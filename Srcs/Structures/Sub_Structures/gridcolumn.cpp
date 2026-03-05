@@ -4,10 +4,7 @@
 
 /*----Structure gridcolumn----*/
 
-//PRIVATE
-#pragma region PRIVATE
-
-	//PRIVATE FUNCTIONS
+//PRIVATE FUNCTIONS
 
 void gridcolumn::memory_handler(int grid[9][9], int i)
 {
@@ -17,11 +14,6 @@ void gridcolumn::memory_handler(int grid[9][9], int i)
 	}
 }
 
-#pragma endregion
-
-//PUBLIC
-#pragma region PUBLIC
-	//PUBLIC FUNCTIONS
 
 
-#pragma endregion
+//PUBLIC FUNCTIONS
