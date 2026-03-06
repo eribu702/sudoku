@@ -1,4 +1,4 @@
-#include "../../Headers/structure.h"
+#include "../Headers/structure.h"
 #include <iostream>
 #include <vector>
 
@@ -7,32 +7,33 @@
 
 //PRIVATE
 
-
+//populats structures and checks for mistakes
 void Sudokuboard::assign_memory()
 {
 	/*assigns slots their memory addresses and makes sure numbers are within range*/
 	for (int y = 0; y < 9; y++)//iterate rows & sqaure structures
 	{
-		//assign sqaure information
-		square[y].memory_handler(grid, y);
-
 		for (int x = 0; x < 9; x++)//iterate slots
 		{
-			//assign row and column information
+			//assign row and column and sqaure information
 			row[y].slot[x] = &grid[y][x];
-			column[y].slot[x] = &grid[x][y];
+			column[y].slot[x] = &grid[y][x];
+			square[y / 3 * 3 + (x / 3)].slot[y % 3 * 3 + (x % 3)] = &grid[y][x];
 
 			//assign number information
 			number[y][x].slot = &grid[y][x];
 			number[y][x].row = &row[y];
 			number[y][x].column = &column[x];
 			number[y][x].square = &square[(x / 3) + ((y / 3) * 3)];
-		}
-		
-		if (!range_check(y))//checks no numbers above or below 0-9
-			return;
-	}
 
+			if (*row[y].slot[x] < 0 || *row[y].slot[x] > 9)//check for out of range numbers
+			{
+				std::cout << "Row " << y + 1 << " has the number:" << *row[y].slot[x] << '\n';
+				std::cout << "Make sure all numbers are between 0 & 9!";
+				return;
+			}
+		}
+	}
 	//checks that there is only one of each number per row
 	if (!check_correct())
 		return;

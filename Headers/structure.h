@@ -21,13 +21,8 @@ private:
 
 	//PRIVATE RESOURCES
 
-	int* slot[9];
+	int* slot[9] = {nullptr};
 	int zeroes = 0;
-
-	//PRIVATE FUNCTIONS
-
-	//recieves and packages slot information
-	void memory_handler(int grid[9][9], int inp);
 
 #pragma endregion
 
@@ -53,7 +48,7 @@ private:
 
 	//PRIVATE RESOURCES
 
-	int* slot[9];
+	int* slot[9] = {nullptr};
 	int zeroes = 0;
 
 	//PRIVATE FUNCTIONS
@@ -82,7 +77,7 @@ private:
 	
 	//PRIVATE RESOURCES
 
-	int* slot[9];
+	int* slot[9] = {nullptr};
 	int zeroes = 0;
 
 	//PRIVATE FUNCTIONS
@@ -113,12 +108,14 @@ private:
 
 	//PRIVATE RESOURCES
 	bool filled = false;
-	int* slot;
-	gridrow* row;
-	gridcolumn* column;
-	gridsquare* square;
+	int* slot = nullptr;
+	gridrow* row = nullptr;
+	gridcolumn* column = nullptr;
+	gridsquare* square = nullptr;
 
 	//PRIVATE FUNCTIONS
+
+
 
 #pragma endregion
 
@@ -150,9 +147,6 @@ private:
 
 	//checks a row, column or square
 	int check_set(char structure, int index, int target);
-
-	//checks all rows for numbers out of 0-9 range, will return true if none found
-	bool range_check(int index);
 
 	//gives rows, columns, squares and numbers thier appropraiate data
 	void assign_memory();

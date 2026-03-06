@@ -1,4 +1,4 @@
-#include "../../Headers/structure.h"
+#include "../Headers/structure.h"
 #include <iostream>
 
 
@@ -41,39 +41,21 @@ int Sudokuboard::check_set(char structure, int index, int target)
 	return check;
 }
 
-//checks all rows for numbers out of 0-9 range, will return true if none found
-bool Sudokuboard::range_check(int index)
-{
-	for (int slot_i = 0; slot_i < 9; slot_i++)
-	{
-		if (*row[index].slot[slot_i] < 0 || *row[index].slot[slot_i] > 9)
-		{
-			std::cout << "Row " << index + 1 << " contains a number out of range! (0-9)\n";
-			return false;
-		}
-	}
-	return true;
-}
-
-
-
-//PUBLIC
 
 //ensures there is no repeats of numbers in rows
 bool Sudokuboard::check_correct()
 {
 	const char str[] = "rcs";
-	int target_found;
 
-	for (int i = 0; i < 3; i++)//iterates rows, columns and squares
+	for (int group = 0; group < 3; group++)//iterates rows, columns and squares
 	{
-		for (int structure_i = 0; structure_i < 9; structure_i++)//iterates through 9 of each structure
+		for (int set = 0; set < 9; set++)//iterates through 9 of each structure
 		{
-			for (int check_target = 1; check_target <= 9; check_target++)//iterates through each number check (1 - 9)
+			for (int target = 1; target <= 9; target++)//iterates through each number check (1 - 9)
 			{
-				if (check_set(str[i], structure_i, check_target) > 1)
+				if (check_set(str[group], set, target) > 1)
 				{
-					switch (str[i])
+					switch (str[group])
 					{
 						case 'r':
 							std::cout << "Row ";
@@ -84,7 +66,7 @@ bool Sudokuboard::check_correct()
 						case 's':
 							std::cout << "Sqaure ";
 					}
-					std::cout << structure_i + 1 << "has more than one" << check_target << "'s!\n";
+					std::cout << set + 1 << "has more than one" << target << "'s!\n";
 					return false;
 				}
 			}
