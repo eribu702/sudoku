@@ -2,6 +2,6 @@
 
 void sudoku_engine(const int grid[9][9])
 {
-	dynamicboard sudoku(grid);
+	Sudokuboard sudoku(grid);
 	sudoku.print();
 }

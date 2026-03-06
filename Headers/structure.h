@@ -8,13 +8,13 @@
 /*------------------------------*/
 
 
-
 /*----Structure gridsquare----*/
 #pragma region Structure gridsquare
 struct gridsquare
 {
 	//FRIENDS
-	friend struct dynamicboard;
+	friend struct Sudokuboard;
+	friend struct gridnumber;
 private:
 #pragma region PRIVATE
 	//CONTRUCTOR (private)
@@ -23,7 +23,6 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
-	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
 
@@ -46,7 +45,8 @@ public:
 struct gridcolumn
 {
 	//FRIENDS
-	friend struct dynamicboard;
+	friend struct Sudokuboard;
+	friend struct gridnumber;
 private:
 #pragma region PRIVATE
 	//CONTRUCTOR (private)
@@ -55,12 +55,8 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
-	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
-
-	//recieves and packages slot information
-	void memory_handler(int column[9][9], int i);
 
 #pragma endregion
 
@@ -78,7 +74,8 @@ public:
 struct gridrow
 {
 	//FRIENDS
-	friend struct dynamicboard;
+	friend struct Sudokuboard;
+	friend struct gridnumber;
 private:
 #pragma region PRIVATE
 	//CONTRUCTOR (private)
@@ -87,12 +84,9 @@ private:
 
 	int* slot[9];
 	int zeroes = 0;
-	bool num_present[9] = { false };
 
 	//PRIVATE FUNCTIONS
-		
-	//recieves and packages slot information
-	void memory_handler(int grid[9][9], int i);
+
 
 #pragma endregion
 
@@ -106,9 +100,41 @@ public:
 
 
 
-/*----Structure dynamicboard----*/
-#pragma region Structure dynamicboard
-struct dynamicboard
+
+/*----Structure gridnumber----*/
+#pragma region Structure gridnumber
+struct gridnumber
+{
+	//FRIENDS
+	friend struct Sudokuboard;
+private:
+#pragma region PRIVATE
+	//CONTRUCTOR (private)
+
+	//PRIVATE RESOURCES
+	bool filled = false;
+	int* slot;
+	gridrow* row;
+	gridcolumn* column;
+	gridsquare* square;
+
+	//PRIVATE FUNCTIONS
+
+#pragma endregion
+
+public:
+#pragma region PUBLIC
+	//PUBLIC FUNCTIONS
+
+#pragma endregion
+};
+#pragma endregion
+
+
+
+/*----Structure Sudokuboard----*/
+#pragma region Structure Sudokuboard
+struct Sudokuboard
 {
 private:
 #pragma region PRIVATE
@@ -117,28 +143,27 @@ private:
 	gridrow row[9];
 	gridcolumn column[9];
 	gridsquare square[9];
+	gridnumber number[9][9];
 
 
 	//PRIVATE FUNCTIONS
 
-	//calls allocation functions
-	void allocate_data_sets(int grid[9][9]);
-
 	//checks a row, column or square
-	int check(char structure, int index, int target);
+	int check_set(char structure, int index, int target);
 
 	//checks all rows for numbers out of 0-9 range, will return true if none found
 	bool range_check(int index);
 
-	//sets a substructure's num_present[found_num] to true if the number exists
-	void number_present(char structure, int structure_i, int found_num);
+	//gives rows, columns, squares and numbers thier appropraiate data
+	void assign_memory();
+
 
 #pragma endregion
 
 public:
 #pragma region PUBLIC
 	//PUBLIC CONSTRUCTOR
-	dynamicboard(const int inp[9][9]);
+	Sudokuboard(const int inp[9][9]);
 
 
 
@@ -150,19 +175,15 @@ public:
 	//print board to screen
 	void print();
 
+	//prints number structures to screen
+	void print_numbers();
 
 
 
 	//CHECK FUNCTIONS
 
-	//counts empties
-	void count_zeroes();
-
-	//ensures there is no repeats of numbers in rows, columns or squares and records number presence in structures
+	//ensures there is no repeats of numbers in rows
 	bool check_correct();
-
-	//checks every row, column and square for repeats of the same number
-	bool initial_check();
 
 #pragma endregion
 };

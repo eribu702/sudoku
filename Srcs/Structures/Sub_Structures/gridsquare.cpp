@@ -10,14 +10,15 @@
 //assigns pointers to gridspaces
 void gridsquare::memory_handler(int grid[9][9], int inp)
 {
-	int row = (inp / 3) * 3;
-	int col = (inp % 3) * 3;
+	
+	int y = (inp / 3) * 3;
+	int x = (inp % 3) * 3;
 
-	for (int rowR = 0, i = 0; rowR < 3; rowR++)
+	for (int yy = 0, nine = 0; yy < 3; yy++)//iterate rows
 	{
-		for (int colC = 0; colC < 3; colC++)
+		for (int xx = 0; xx < 3; xx++)//iterate columns
 		{
-			slot[i++] = &grid[rowR + row][colC + col];
+			slot[nine++] = &grid[yy + y][xx + x];
 		}
 	}
 }
