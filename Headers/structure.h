@@ -1,4 +1,4 @@
-#ifndef _STRUCTURE_H_
+#ifndef STRUCTURE_H_
 #define _STRUCTURE_H_
 
 #include <vector>
@@ -23,6 +23,7 @@ private:
 
 	int* slot[9] = {nullptr};
 	int zeroes = 0;
+	bool filled[9] = { false };
 
 #pragma endregion
 
@@ -50,6 +51,7 @@ private:
 
 	int* slot[9] = {nullptr};
 	int zeroes = 0;
+	bool filled[9] = { false };
 
 	//PRIVATE FUNCTIONS
 
@@ -79,7 +81,8 @@ private:
 
 	int* slot[9] = {nullptr};
 	int zeroes = 0;
-
+	bool filled[9] = { false };
+	
 	//PRIVATE FUNCTIONS
 
 
@@ -172,12 +175,15 @@ public:
 	//prints number structures to screen
 	void print_numbers();
 
+	//prints all stored zero counts from structures
+	void print_zeroes();
+
 
 
 	//CHECK FUNCTIONS
 
-	//ensures there is no repeats of numbers in rows
-	bool check_correct();
+//catch out of range or repeats, returns false if empty number (0)
+void check_info(int y, int x);
 
 #pragma endregion
 };

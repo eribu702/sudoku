@@ -42,35 +42,45 @@ int Sudokuboard::check_set(char structure, int index, int target)
 }
 
 
-//ensures there is no repeats of numbers in rows
-bool Sudokuboard::check_correct()
+//catch out of range or repeats, returns false if empty number (0)
+void Sudokuboard::check_info(const int y, const int x)
 {
-	const char str[] = "rcs";
-
-	for (int group = 0; group < 3; group++)//iterates rows, columns and squares
-	{
-		for (int set = 0; set < 9; set++)//iterates through 9 of each structure
-		{
-			for (int target = 1; target <= 9; target++)//iterates through each number check (1 - 9)
-			{
-				if (check_set(str[group], set, target) > 1)
-				{
-					switch (str[group])
-					{
-						case 'r':
-							std::cout << "Row ";
-							break;
-						case 'c':
-							std::cout << "Column ";
-							break;
-						case 's':
-							std::cout << "Sqaure ";
-					}
-					std::cout << set + 1 << "has more than one" << target << "'s!\n";
-					return false;
-				}
-			}
-		}
+	// checks numbers are in range
+	if (grid[y][x] < 0 || grid[y][x] > 9) {
+		std::cout << "Row " << y + 1 << " has the number: " << *row[y].slot[x] << '\n';
+		std::cout << "Make sure all numbers are between 0 & 9!";
+		std::exit(0);
 	}
-	return true;
+
+	//checks not zero
+	if (grid[y][x] == 0) {
+		number[y][x].row->zeroes++;
+		number[y][x].column->zeroes++;
+		number[y][x].square->zeroes++;
+		return;
+	}
+	
+	const int num = grid[y][x] - 1;//to avoid indexing like this: filled[grid[y][x] - 1]
+	bool fail = false;
+	
+	//ensures number doesn't already exist in structures
+	if (number[y][x].row->filled[num] == true) {
+		std::cout << "Row ";
+		fail = true;
+	} else if (number[y][x].column->filled[num] == true) {
+		std::cout << "Column ";
+		fail = true;
+	} else if (number[y][x].square->filled[num] == true) {
+		std::cout << "Square ";
+		fail = true;
+	} if (fail) {
+		std::cout << y + 1 << " has more than one " << grid[y][x] << "'s!\n";
+		std::exit(0);
+	}
+
+	//number not zero, out of range or already existing, assign infomation
+	number[y][x].row->filled[num] = true;
+	number[y][x].column->filled[num] = true;
+	number[y][x].square->filled[num] = true;
+	number[y][x].filled = true;
 }

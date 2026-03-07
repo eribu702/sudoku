@@ -2,6 +2,10 @@
 #include <iostream>
 #include <vector>
 
+#define NINE_TIMES for (int z = 0; z < 9; z++) {
+#define INDEX z
+#define END_NINE }
+
 
 /*----Structure Sudokuboard----*/
 
@@ -18,9 +22,6 @@ void Sudokuboard::assign_memory()
 			//assign row and column and sqaure information
 			row[y].slot[x] = &grid[y][x];
 			column[x].slot[y] = &grid[y][x];
-
-
-
 			square[y / 3 * 3 + (x / 3)].slot[y % 3 * 3 + (x % 3)] = &grid[y][x];
 
 			//assign number information
@@ -28,18 +29,10 @@ void Sudokuboard::assign_memory()
 			number[y][x].row = &row[y];
 			number[y][x].column = &column[x];
 			number[y][x].square = &square[(x / 3) + ((y / 3) * 3)];
-
-			if (*row[y].slot[x] < 0 || *row[y].slot[x] > 9)//check for out of range numbers
-			{
-				std::cout << "Row " << y + 1 << " has the number:" << *row[y].slot[x] << '\n';
-				std::cout << "Make sure all numbers are between 0 & 9!";
-				return;
-			}
+			
+			check_info(y, x);
 		}
 	}
-	//checks that there is only one of each number per row
-	if (!check_correct())
-		return;
 }
 
 //PUBLIC
@@ -50,7 +43,6 @@ Sudokuboard::Sudokuboard(const int inp[9][9])
 	for (int x = 0; x < 9; x++)
 		for (int y = 0; y < 9; y++)
 			grid[y][x] = inp[y][x];
-
 	assign_memory();
 }
 
@@ -129,4 +121,23 @@ void Sudokuboard::print_numbers()
 		}
 		std::cout << '\n';//every three rows
 	}
+}
+
+//prints all stored zero counts from structures
+void Sudokuboard::print_zeroes()
+{
+	std::cout << "Zero counts!!\n\nRows:\n";
+	NINE_TIMES
+		std::cout << "Row " << INDEX + 1 << ": " << row[INDEX].zeroes << '\n';
+	END_NINE
+
+	std::cout << "\nColumns:\n";
+	NINE_TIMES
+		std::cout << "Column " << INDEX + 1 << ": " << column[INDEX].zeroes << '\n';
+	END_NINE
+
+	std::cout << "\nSquares:\n";
+	NINE_TIMES
+		std::cout << "Sqaure " << INDEX + 1 << ": " << square[INDEX].zeroes << '\n';
+	END_NINE
 }
