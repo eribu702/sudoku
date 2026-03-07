@@ -17,7 +17,10 @@ void Sudokuboard::assign_memory()
 		{
 			//assign row and column and sqaure information
 			row[y].slot[x] = &grid[y][x];
-			column[y].slot[x] = &grid[y][x];
+			column[x].slot[y] = &grid[y][x];
+
+
+
 			square[y / 3 * 3 + (x / 3)].slot[y % 3 * 3 + (x % 3)] = &grid[y][x];
 
 			//assign number information
