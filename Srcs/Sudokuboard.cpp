@@ -11,7 +11,7 @@
 
 //PRIVATE
 
-//populats structures and checks for mistakes
+//populates structures and checks for mistakes
 void Sudokuboard::assign_memory()
 {
 	/*assigns slots their memory addresses and makes sure numbers are within range*/
