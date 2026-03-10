@@ -1,3 +1,6 @@
+#include <vector>
+#include <iostream>
+
 //Header file
 
 //returns copy of grid
@@ -6,24 +9,25 @@ std::vector<std::vector<int>> get_vector_board();
 //print vector board to screen
 void print_vector_sudoku();
 
-//function definition
+//checks a row, column or square
+int check_set(char structure, int index, int target);
 
 //returns copy of grid
-std::vector<std::vector<int>> dynamicboard::get_vector_board()
+std::vector<std::vector<int>> get_vector_board()
 {
 	std::vector<std::vector<int>> grid_cpy(9, std::vector<int>(9));//create a 9x9 vector
 	for (int y = 0; y < 9; y++)
 	{
 		for (int x = 0; x < 9; x++)
 		{
-			grid_cpy[x][y] = grid[x][y];
+			//grid_cpy[x][y] = grid[x][y];
 		}
 	}
 	return grid_cpy;
 }
 
 //print vector board to screen
-void dynamicboard::print_vector_sudoku()
+void print_vector_sudoku()
 {
 	std::vector<std::vector<int>> gridcpy = get_vector_board();
 	for (int y = 0; y < 9; y += 3)//iterate collums
@@ -43,4 +47,36 @@ void dynamicboard::print_vector_sudoku()
 		}
 		std::cout << '\n';//happens after every 3 rows
 	}
+}
+
+
+//checks a row column or square for target
+int check_set(char structure, int index, int target)
+{
+	int check = 0;
+	switch (structure)
+	{
+	case 'r':
+		for (int i = 0; i < 9; i++)
+		{
+			//if (*row[index].slot[i] == target)
+				check += 1;
+		}
+		break;
+	case 'c':
+		for (int i = 0; i < 9; i++)
+		{
+			//if (*column[index].slot[i] == target)
+				check += 1;
+		}
+		break;
+	case 's':
+		for (int i = 0; i < 9; i++)
+		{
+			//if (*square[index].slot[i] == target)
+				check += 1;
+		}
+		break;
+	}
+	return check;
 }
