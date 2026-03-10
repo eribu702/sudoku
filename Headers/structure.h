@@ -16,7 +16,7 @@ class gridset
 	friend struct gridnumber;
 
 
-	int* slot[9] = {nullptr};
+	int* position[9] = {nullptr};
 	bool filled[9] = { false };
 };
 #pragma endregion
@@ -29,7 +29,7 @@ class gridboard
 	friend struct Sudoku;
 
 
-	int slot = 0;
+	int I = 0;
 	gridset* row = nullptr; gridset* column = nullptr; gridset* square = nullptr;
 	int coordinate = -1;
 
